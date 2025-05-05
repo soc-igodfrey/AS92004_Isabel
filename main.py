@@ -7,10 +7,10 @@ Quiz
 '''
 
 #Set up question and answer banks
-questions = (" Jakob Nielsen's 10 Usability Heuristics are best thought of as", 
+questions = (" Jakob Nielsen's 10 Usability Heuristics are best though of as", 
               "When you're using a computer, it's good if it always tells you what's going on. Which heuristic is this?", 
               "It helps if the things on a screen look and act like things in the real world. Which is the best example of this?",
-              "The saying 'U HAVE CHARM' helps remember some rules. What does the 'A' stand for?",
+              "The saying 'U HAVE CHARM' helps remember some rules. Wha t does the 'A' stand for?",
               "The main idea of 'Error prevention' is to:",
               "Making things faster for experienced users, like using shortcuts, is part of which heuristic?",
               "If buttons and menus look and work the same way everywhere in an app, which rule is it following?",
@@ -62,11 +62,18 @@ MIN = 5
 
 MAX = 10
 
-# get number of questions from try and except as it helps make my code more user friendly and robust 
-try:
-  int(input("How many questions would you like? Please pick between 5-10 questions"))
-except:
-    print("Error, Please enter a number")
+# get number of questions from try and except as it helps make my code more user friendly and robust, while using a loop so it runs again till imput is valid
+while True:
+    try:
+        num_questions = int(input("How many questions would you like? Please pick between 5-10 questions: "))
+        if 5 <= num_questions <= 10:
+            break 
+        else:
+            print("Please enter a number between 5 and 10.")
+    except ValueError:
+        print("Error, please enter a valid number.")
+    except:
+        print("Unexpected error. Please try again")
   
   
 
