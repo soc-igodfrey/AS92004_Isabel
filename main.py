@@ -42,17 +42,31 @@ score = 0
 
 name = input("What is your name?")
 
-yes_no = input("Hello Would you like to play a game")
+yes_no = input("Hello, would you like to play a game? ")
 
-yes_no = yes_no.lower
+# make it all lower case and the first letter so more answers are expected
+yes_no = yes_no[0].lower()
 
-yes_no = yes_no.strip(1)
 
-no_questions = int(input("How many questions would you like? Please pick between 5-10 questions")
 
-#set up constant
+# if statements, Have an else statement as well encase they dont enter yes or no so the code keeps running making it more robust. 
+if yes_no == y:
+  print("Okay lets get started!")
+elif yes_no == n:
+  print("Aww, I'm sad to see you go. Bye")
+else:
+  print("Hmmmm Was that a yes or a no. Imma say yes. Lets play")
+
+# Set up constants because they help make code more robust
 MIN = 5
 
 MAX = 10
+
+# get number of questions from try and except as it helps make my code more user-friendly and robust 
+try:
+  int(input("How many questions would you like? Please pick between 5-10 questions"))
+except:
+    print("Error, Please enter a number")
+  
 
 
