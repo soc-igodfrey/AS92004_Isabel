@@ -50,23 +50,24 @@ yes_no = yes_no[0].lower()
 
 
 # if statements, Have an else statement as well encase they dont enter yes or no so the code keeps running making it more robust. 
-if yes_no == y:
-  print("Okay lets get started!")
-elif yes_no == n:
-  print("Aww, I'm sad to see you go. Bye")
+if yes_no == 'y':
+    print("Okay, let's get started!")
+elif yes_no == 'n':
+    print("Aww, I'm sad to see you go. Bye.")
 else:
-  print("Hmmmm Was that a yes or a no. Imma say yes. Lets play")
+    print("Hmmmm, was that a yes or a no? Imma say yes. Let's play!")
 
-# Set up constants because they help make code more robust
+#set up constant because they help make code more robust
 MIN = 5
 
 MAX = 10
 
-# get number of questions from try and except as it helps make my code more user-friendly and robust 
+# get number of questions from try and except as it helps make my code more user friendly and robust 
 try:
   int(input("How many questions would you like? Please pick between 5-10 questions"))
 except:
     print("Error, Please enter a number")
+  
   
 
 
