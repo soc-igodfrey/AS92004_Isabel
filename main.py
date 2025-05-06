@@ -8,10 +8,12 @@ Quiz
 
 import random
 
-# --- Intro ---
+# Set up game so the user has a good experience
 name = input("Hi there! What's your name? ")
 print("Nice to meet you, " + name + "!")
 
+# this makes the answer one letter and lower case so more answer are expected meaning there less errors helping my code be more robust
+#the last line in the if statment makes sure all answers are accepted meaning less errors and more robust code
 yes_no = input("Would you like to play a quiz game? (y or n): ")
 yes_no = yes_no[0].lower()
 
@@ -23,7 +25,7 @@ elif yes_no == 'n':
 else:
     print("Hmm, I'll take that as a yes. Let's play!")
 
-# --- Question, options, and answers ---
+# Set up question option and answer banks so i am not repating myself making less room for error and typos making my code more robust
 questions = [
     "Jakob Nielsen's 10 Usability Heuristics are best thought of as", 
     "When you're using a computer, it's good if it always tells you what's going on. Which heuristic is this?", 
@@ -65,10 +67,11 @@ options = [
 
 answers = ["b", "b", "b", "b", "c", "b", "c", "c", "c", "b"]
 
-# --- Get number of questions ---
+# Use constants for max and min questions so i dont have to repeat myself and only need to change these if i need to change the number of questions making it less error prone
 MIN = 5
 MAX = 10
 
+# this is a try and except in a loop making my code more robust by printing error comments to help the user understand and cause erroes. This also makes sure the code doesnt break making it user friendly and robust.
 while True:
     try:
         num_questions = int(input("How many questions would you like? Please pick between 5-10 questions: "))
@@ -81,12 +84,13 @@ while True:
     except:
       print("Unexpected error. Please try again")
 
-# --- Randomly pick unique questions ---
+# these randomly pick the same questions options and answers and stores them in lists to use in loops
 used_indexes = []
 selected_questions = []
 selected_options = []
 selected_answers = []
 
+# This selects random questions and makes sure there are no douple ups 
 while len(used_indexes) < num_questions:
     index = random.randint(0, len(questions) - 1)
     if index not in used_indexes:
@@ -95,9 +99,11 @@ while len(used_indexes) < num_questions:
         selected_options.append(options[index])
         selected_answers.append(answers[index])
 
-# --- Show selected questions and answers (for now) ---
+# This loop uses the lists to display the questions options and answers. The lists make sure i dont have to repeat myself and make less bugs while codding
 for i in range(num_questions):
     print("\nQuestion " + str(i + 1) + ": " + selected_questions[i])
     for option in selected_options[i]:
         print(option)
     print("(Correct answer: " + selected_answers[i].upper() + ")")  
+
+  
