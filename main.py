@@ -19,6 +19,7 @@ if yes_no == 'y':
     print("Awesome! Let's get started!")
 elif yes_no == 'n':
     print("Aww, maybe next time. Goodbye!")
+    exit()
 else:
     print("Hmm, I'll take that as a yes. Let's play!")
 
@@ -75,8 +76,10 @@ while True:
             break
         else:
             print("Please enter a number between 5 and 10.")
+    except ValueError:
+        print("Please enter an interger.")
     except:
-        print("Please enter a number.")
+      print("Unexpected error. Please try again")
 
 # --- Randomly pick unique questions ---
 used_indexes = []
@@ -97,8 +100,4 @@ for i in range(num_questions):
     print("\nQuestion " + str(i + 1) + ": " + selected_questions[i])
     for option in selected_options[i]:
         print(option)
-    print("(Correct answer: " + selected_answers[i].upper() + ")")  # You can remove this later
-
-  
-
-
+    print("(Correct answer: " + selected_answers[i].upper() + ")")  
