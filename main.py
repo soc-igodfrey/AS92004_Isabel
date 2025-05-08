@@ -11,7 +11,7 @@ import random
 def gameplay():
     # Set up game so the user has a good experience
     name = input("Hi there! What's your name? ")
-    print("Nice to meet you, " + name + "!")
+    print("Nice to meet you, " + name + "!\n")
 
     # this makes the answer one letter and lower case so more answer are expected meaning there less errors helping my code be more robust
     #the last line in the if statment makes sure all answers are accepted meaning less errors and more robust code
@@ -19,13 +19,13 @@ def gameplay():
     yes_no = yes_no[0].lower()
 
     if yes_no == 'y':
-        print("Awesome! Let's get started!")
+        print("Awesome! Let's get started!\n")
 
     elif yes_no == 'n':
-        print("Aww, maybe next time. Goodbye!")
+        print("Aww, maybe next time. Goodbye!\n")
         return
     else:
-        print("Hmm, I'll take that as a yes. Let's play!")
+        print("Hmm, I'll take that as a yes. Let's play!\n")
 
     score = 0
 
@@ -109,23 +109,16 @@ def gameplay():
         for option in selected_options[i]:
             print(option)
         while True:
-            player_answer = input("Your answer (a, b, c, or d): ").lower()
+            player_answer = input("Your answer (a, b, c, or d):").lower()
             if player_answer in ['a', 'b', 'c', 'd']:
                 break
             else:
-                print("Please enter a valid option: a, b, c, or d.")
+                print("Please enter a valid option: a, b, c, or d.\n")
 
         if player_answer == selected_answers[i]:
-            print("✅ Correct!")
+            print("Correct. YAY!!\n")
             score += 1
         else:
-            print("wrong")
+            print("wrong\n")
 
 gameplay()
-      
-      
-      
-      
-      
-
-  
