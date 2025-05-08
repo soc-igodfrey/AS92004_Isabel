@@ -17,6 +17,7 @@ print("Nice to meet you, " + name + "!")
 yes_no = input("Would you like to play a quiz game? (y or n): ")
 yes_no = yes_no[0].lower()
 
+
 if yes_no == 'y':
     print("Awesome! Let's get started!")
 elif yes_no == 'n':
@@ -24,6 +25,9 @@ elif yes_no == 'n':
     exit()
 else:
     print("Hmm, I'll take that as a yes. Let's play!")
+      
+
+score = 0
 
 # Set up question option and answer banks so i am not repating myself making less room for error and typos making my code more robust
 questions = [
@@ -104,6 +108,22 @@ for i in range(num_questions):
     print("\nQuestion " + str(i + 1) + ": " + selected_questions[i])
     for option in selected_options[i]:
         print(option)
-    print("(Correct answer: " + selected_answers[i].upper() + ")")  
+    while True:
+        player_answer = input("Your answer (a, b, c, or d): ").lower()
+        if player_answer in ['a', 'b', 'c', 'd']:
+            break
+        else:
+            print("Please enter a valid option: a, b, c, or d.")
+
+    if player_answer == selected_answers[i]:
+        print("✅ Correct!")
+        score += 1
+    else:
+      print("wrong")
+      
+      
+      
+      
+      
 
   
