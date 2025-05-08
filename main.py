@@ -15,17 +15,22 @@ def gameplay():
 
     # this makes the answer one letter and lower case so more answer are expected meaning there less errors helping my code be more robust
     #the last line in the if statment makes sure all answers are accepted meaning less errors and more robust code
-    yes_no = input("Would you like to play a quiz game? (y or n): ")
-    yes_no = yes_no[0].lower()
+    while True:
+      try: 
+        yes_no = input("Would you like to play a quiz game? (y or n): ")
+        yes_no = yes_no[0].lower()
 
-    if yes_no == 'y':
-        print("Awesome! Let's get started!\n")
-
-    elif yes_no == 'n':
-        print("Aww, maybe next time. Goodbye!\n")
-        return
-    else:
-        print("Hmm, I'll take that as a yes. Let's play!\n")
+        if yes_no == 'y':
+            print("Awesome! Let's get started!\n")
+            break
+        elif yes_no == 'n':
+            print("Aww, maybe next time. Goodbye!\n")
+            return
+        else:
+            print("Hmm, I'll take that as a yes. Let's play!\n")
+            break
+      except:
+        print("please enter yes or no")
 
     score = 0
 
@@ -120,5 +125,9 @@ def gameplay():
             score += 1
         else:
             print("wrong\n")
+    print("Your score was", score)
+    
+    
+    
 
 gameplay()
