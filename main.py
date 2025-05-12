@@ -9,6 +9,10 @@ Quiz
 import random
 
 def gameplay():
+    # Use constants for max and min questions so i dont have to repeat myself and only need to change these if i need to change the number of questions making it less error prone
+    MIN = 5
+    MAX = 10
+    score = 0
     # Set up game so the user has a good experience
     name = input("Hi there! What's your name? ")
     print("Nice to meet you, " + name + "!\n")
@@ -32,7 +36,19 @@ def gameplay():
       except:
         print("please enter yes or no")
 
-    score = 0
+   
+     # this is a try and except in a loop making my code more robust by printing error comments to help the user understand and cause erroes. This also makes sure the code doesnt break making it user friendly and robust.
+    while True:
+        try:
+            num_questions = int(input("How many questions would you like? Please pick between 5-10 questions: "))
+            if MIN <= num_questions <= MAX:
+                break
+            else:
+                print("Please enter a number between 5 and 10.")
+        except ValueError:
+            print("Please enter an interger.")
+        except:
+            print("Unexpected error. Please try again")
 
     # Set up question option and answer banks so i am not repating myself making less room for error and typos making my code more robust
     questions = [
@@ -75,10 +91,6 @@ def gameplay():
     ]
 
     answers = ["b", "b", "b", "b", "c", "b", "c", "c", "c", "b"]
-
-    # Use constants for max and min questions so i dont have to repeat myself and only need to change these if i need to change the number of questions making it less error prone
-    MIN = 5
-    MAX = 10
 
     # this is a try and except in a loop making my code more robust by printing error comments to help the user understand and cause erroes. This also makes sure the code doesnt break making it user friendly and robust.
     while True:
@@ -127,7 +139,9 @@ def gameplay():
             correct_index = ['a', 'b', 'c', 'd'].index(selected_answers[i])
             correct_text = selected_options[i][correct_index]
             print("Sorry, that was wrong. The correct answer was: " + correct_text + "\n")
-    print("Your score was", score, "out of", num_questions, ". Well done!")
+    score = score/num_questions * 100
+    print("Your score was", score,"% . Well done!")
+    
     
 
 gameplay()
