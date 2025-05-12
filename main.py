@@ -124,10 +124,10 @@ def gameplay():
             print("Correct. YAY!!\n")
             score += 1
         else:
-            print("wrong\n")
-    print("Your score was", score)
-    
-    
+            correct_index = ['a', 'b', 'c', 'd'].index(selected_answers[i])
+            correct_text = selected_options[i][correct_index]
+            print("Sorry, that was wrong. The correct answer was: " + correct_text + "\n")
+    print("Your score was", score, "out of", num_questions, ". Well done!")
     
 
 gameplay()
