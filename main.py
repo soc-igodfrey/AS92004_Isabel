@@ -29,6 +29,7 @@ def gameplay():
             break
         elif yes_no == 'n':
             print("Aww, maybe next time. Goodbye!\n")
+            break
             return
         else:
             print("Hmm, I'll take that as a yes. Let's play!\n")
