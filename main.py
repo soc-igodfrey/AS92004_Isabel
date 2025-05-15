@@ -8,50 +8,83 @@ Quiz
 
 import random
 
-def gameplay():
-    # Use constants for max and min questions so i dont have to repeat myself and only need to change these if i need to change the number of questions making it less error prone
-    MIN = 5
-    MAX = 10
-    score = 0
-    # Set up game so the user has a good experience
+# set up constants
+# this will make by code more robust as i can just change the constant instead of having to change the number whenever it is used.
+MIN_QUESTIONS = 5
+MAX_QUESTIONS = 10
+OPTION_KEYS = ['a', 'b', 'c', 'd']
+POSITIVE_FEEDBACK = "Correct. YAY!!\n"
+NEGATIVE_FEEDBACK = "Sorry, that was wrong. The correct answer was: "
+
+# set up user input functions
+#having iputs as their own functions means i will be able to change them here where they are seperate instead of having to go through and try find them in my big block of code
+#this also make my code easier to read
+def get_user_name():
     name = input("Hi there! What's your name? ")
     print("Nice to meet you, " + name + "!\n")
+    return name
 
-    # this makes the answer one letter and lower case so more answer are expected meaning there less errors helping my code be more robust
-    #the last line in the if statment makes sure all answers are accepted meaning less errors and more robust code
+# the try and expect and the whil loop make my code robust by not breaking when ivalid input is put in and give error messages to help the user put in valid input
+def ask_to_play():
     while True:
-      try: 
-        yes_no = input("Would you like to play a quiz game? (y or n): ")
-        yes_no = yes_no[0].lower()
+        try: 
+            yes_no = input("Would you like to play a quiz game? (y or n): ")
+            yes_no = yes_no[0].lower()
 
-        if yes_no == 'y':
-            print("Awesome! Let's get started!\n")
-            break
-        elif yes_no == 'n':
-            print("Aww, maybe next time. Goodbye!\n")
-            break
-            return
-        else:
-            print("Hmm, I'll take that as a yes. Let's play!\n")
-            break
-      except:
-        print("please enter yes or no")
+            if yes_no == 'y':
+                print("Awesome! Let's get started!\n")
+                return True
+            elif yes_no == 'n':
+                print("Aww, maybe next time. Goodbye!\n")
+                return False
+            else:
+                print("Hmm, I'll take that as a yes. Let's play!\n")
+                return True
+        except:
+            print("Please enter yes or no")
 
-   
-     # this is a try and except in a loop making my code more robust by printing error comments to help the user understand and cause erroes. This also makes sure the code doesnt break making it user friendly and robust.
+def get_number_of_questions():
     while True:
         try:
-            num_questions = int(input("How many questions would you like? Please pick between 5-10 questions: "))
-            if MIN <= num_questions <= MAX:
-                break
+            num = int(input("How many questions would you like? Please pick between " + str(MIN_QUESTIONS) + "-" + str(MAX_QUESTIONS) + ": "))
+            if MIN_QUESTIONS <= num <= MAX_QUESTIONS:
+                return num
             else:
                 print("Please enter a number between 5 and 10.")
         except ValueError:
-            print("Please enter an interger.")
+            print("Please enter an integer.")
         except:
             print("Unexpected error. Please try again")
 
-    # Set up question option and answer banks so i am not repating myself making less room for error and typos making my code more robust
+def ask_question(index, question, options, correct_answer):
+    print("\nQuestion " + str(index + 1) + ": " + question)
+    for option in options:
+        print(option)
+    while True:
+        player_answer = input("Your answer (a, b, c, or d):").lower()
+        if player_answer in OPTION_KEYS:
+            break
+        else:
+            print("Please enter a valid option: a, b, c, or d.\n")
+    if player_answer == correct_answer:
+        print(POSITIVE_FEEDBACK)
+        return True
+    else:
+        correct_index = OPTION_KEYS.index(correct_answer)
+        correct_text = options[correct_index]
+        print(NEGATIVE_FEEDBACK + correct_text + "\n")
+        return False
+
+# this is the main game function. By defining the functions baove now i can just type them in to the main game to make coding this part faster and less room for error
+def gameplay():
+    score = 0
+    name = get_user_name()
+
+    if not ask_to_play():
+        return
+
+    num_questions = get_number_of_questions()
+
     questions = [
         "Jakob Nielsen's 10 Usability Heuristics are best thought of as", 
         "When you're using a computer, it's good if it always tells you what's going on. Which heuristic is this?", 
@@ -93,26 +126,12 @@ def gameplay():
 
     answers = ["b", "b", "b", "b", "c", "b", "c", "c", "c", "b"]
 
-    # this is a try and except in a loop making my code more robust by printing error comments to help the user understand and cause erroes. This also makes sure the code doesnt break making it user friendly and robust.
-    while True:
-        try:
-            num_questions = int(input("How many questions would you like? Please pick between 5-10 questions: "))
-            if MIN <= num_questions <= MAX:
-                break
-            else:
-                print("Please enter a number between 5 and 10.")
-        except ValueError:
-            print("Please enter an interger.")
-        except:
-            print("Unexpected error. Please try again")
-
-    # these randomly pick the same questions options and answers and stores them in lists to use in loops
     used_indexes = []
     selected_questions = []
     selected_options = []
     selected_answers = []
-
-    # This selects random questions and makes sure there are no douple ups 
+    
+#this loop makes sure differnt questions are selected so there are no double ups
     while len(used_indexes) < num_questions:
         index = random.randint(0, len(questions) - 1)
         if index not in used_indexes:
@@ -121,28 +140,13 @@ def gameplay():
             selected_options.append(options[index])
             selected_answers.append(answers[index])
 
-    # This loop uses the lists to display the questions options and answers. The lists make sure i dont have to repeat myself and make less bugs while codding
     for i in range(num_questions):
-        print("\nQuestion " + str(i + 1) + ": " + selected_questions[i])
-        for option in selected_options[i]:
-            print(option)
-        while True:
-            player_answer = input("Your answer (a, b, c, or d):").lower()
-            if player_answer in ['a', 'b', 'c', 'd']:
-                break
-            else:
-                print("Please enter a valid option: a, b, c, or d.\n")
-
-        if player_answer == selected_answers[i]:
-            print("Correct. YAY!!\n")
+        if ask_question(i, selected_questions[i], selected_options[i], selected_answers[i]):
             score += 1
-        else:
-            correct_index = ['a', 'b', 'c', 'd'].index(selected_answers[i])
-            correct_text = selected_options[i][correct_index]
-            print("Sorry, that was wrong. The correct answer was: " + correct_text + "\n")
-    score = score/num_questions * 100
-    print("Your score was", score,"% . Well done!")
-    
-    
 
+    score = score / num_questions * 100
+    print("Your score was " + str(score) + "% . Well done!")
+    
+#this runs the game
 gameplay()
+
