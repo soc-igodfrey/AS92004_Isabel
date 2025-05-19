@@ -1,4 +1,4 @@
-'''
+''' 
 Isabel Godfrey
 1.1 internal
 Version 1
@@ -74,6 +74,21 @@ def ask_question(index, question, options, correct_answer):
         correct_text = options[correct_index]
         print(NEGATIVE_FEEDBACK + correct_text + "\n")
         return False
+        
+def get_percentage(score, num_questions):
+    percentage = score / num_questions * 100 
+    percentage = int(percentage)  # Convert to integer
+    print("Your score was " + str(percentage) + "%. Well done!")
+
+    if percentage == 100:
+        print("Perfect score! You're a usability superstar! ⭐")
+    elif percentage > 50:
+        print("You passed! Great job! 🎉")
+    else:
+        print("You didn't pass this time, but don't give up! Try again and you'll improve. 💪")
+
+    return percentage
+  
 
 # this is the main game function. By defining the functions baove now i can just type them in to the main game to make coding this part faster and less room for error
 def gameplay():
@@ -143,10 +158,9 @@ def gameplay():
     for i in range(num_questions):
         if ask_question(i, selected_questions[i], selected_options[i], selected_answers[i]):
             score += 1
+    get_percentage(score, num_questions)
 
-    score = score / num_questions * 100
-    print("Your score was " + str(score) + "% . Well done!")
-    
 #this runs the game
 gameplay()
+
 
