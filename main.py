@@ -5,11 +5,11 @@ Version 1
 Quiz
 29/04/2025
 '''
-
+#imports random feature
 import random
 
 # set up constants
-# this will make by code more robust as i can just change the constant instead of having to change the number whenever it is used.
+# this will make by code more robust as i can just change the constant instead of having to change the number whenever it is used allowing for greater flexibilty
 MIN_QUESTIONS = 5
 MAX_QUESTIONS = 10
 OPTION_KEYS = ['a', 'b', 'c', 'd']
@@ -18,7 +18,7 @@ NEGATIVE_FEEDBACK = "Sorry, that was wrong. The correct answer was: "
 
 # set up user input functions
 #having iputs as their own functions means i will be able to change them here where they are seperate instead of having to go through and try find them in my big block of code
-#this also make my code easier to read
+#this also make my code easier to read and allows greater flexibilty
 def get_user_name():
     name = input("Hi there! What's your name? ")
     print("Nice to meet you, " + name + "!\n")
@@ -75,6 +75,7 @@ def ask_question(index, question, options, correct_answer):
         print(NEGATIVE_FEEDBACK + correct_text + "\n")
         return False
         
+# this elif statement check multiple conditions in one statement meaning less code
 def get_percentage(score, num_questions):
     percentage = score / num_questions * 100 
     percentage = int(percentage)  # Convert to integer
@@ -99,7 +100,8 @@ def gameplay():
         return
 
     num_questions = get_number_of_questions()
-
+    
+  # store questions, options and answers in lists for greater flexibilty, super easy to add more questions
     questions = [
         "Jakob Nielsen's 10 Usability Heuristics are best thought of as", 
         "When you're using a computer, it's good if it always tells you what's going on. Which heuristic is this?", 
@@ -162,5 +164,3 @@ def gameplay():
 
 #this runs the game
 gameplay()
-
-
