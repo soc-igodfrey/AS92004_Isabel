@@ -167,6 +167,7 @@ def gameplay():
         if ask_question(i, selected_questions[i], selected_options[i], selected_answers[i]):
             score += 1
     get_percentage(score, num_questions)
+    return gameplay
 
 #this runs the game
 gameplay()
