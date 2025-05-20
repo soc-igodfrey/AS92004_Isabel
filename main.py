@@ -4,6 +4,8 @@ Isabel Godfrey
 Version 1
 Quiz
 29/04/2025
+This program is a multiple-choice quiz that tests the user's knowledge of usability heuristics.
+i have used constants, loops functions and conditionals to ensure the most effient and robust program. These also add lots of flexibilty to my code
 '''
 #imports random feature
 import random
@@ -43,6 +45,8 @@ def ask_to_play():
         except:
             print("Please enter yes or no")
 
+# here i have also used try and expect to ensure program does not crash if user inputs invalid input. 
+#error messages also guide them into putting correct input
 def get_number_of_questions():
     while True:
         try:
@@ -55,7 +59,8 @@ def get_number_of_questions():
             print("Please enter an integer.")
         except:
             print("Unexpected error. Please try again")
-
+#this loop displays questions and get user input
+# it also only allows user to eneter a b c or d and guide them to enter valid input if their input is invalid
 def ask_question(index, question, options, correct_answer):
     print("\nQuestion " + str(index + 1) + ": " + question)
     for option in options:
@@ -76,6 +81,7 @@ def ask_question(index, question, options, correct_answer):
         return False
         
 # this elif statement check multiple conditions in one statement meaning less code
+# this also makes a percantage and tells the user if they pass or not.
 def get_percentage(score, num_questions):
     percentage = score / num_questions * 100 
     percentage = int(percentage)  # Convert to integer
@@ -86,7 +92,7 @@ def get_percentage(score, num_questions):
     elif percentage > 50:
         print("You passed! Great job! 🎉")
     else:
-        print("You didn't pass this time, but don't give up! Try again and you'll improve. 💪")
+        print("You didn't pass this time sorry.")
 
     return percentage
   
